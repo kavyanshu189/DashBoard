@@ -12,5 +12,5 @@ class Contact(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return self.name
+        return self.email  +" and " + self.name
     
