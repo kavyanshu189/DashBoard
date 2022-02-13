@@ -14,3 +14,6 @@ class Contact(models.Model):
     def __str__(self):
         return self.email  +" and " + self.name
     
+class Login(models.Model):
+    username = models.CharField(max_length=20)
+    password = models.CharField(max_length=10)
