@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
 
-
+# here I am 
 # Create your views here.
 def index(request):
     context = {
