@@ -35,7 +35,7 @@ def contact(request):
     
     
         conn = MongoClient()
-        db=conn.kp
+        db=conn.users
         collection=db.knowledge
         rec1={"ptype":ptype,
           "psummary":psummary,
