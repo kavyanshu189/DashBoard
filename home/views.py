@@ -4,6 +4,8 @@ from home.models import Contact
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
+from pymongo import MongoClient
+
 
 # here I am 
 # here  i am second 
@@ -25,12 +27,25 @@ def services(request):
 
 def contact(request):
     if request.method == "POST":
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        desc = request.POST.get('desc')
-        contact = Contact(name=name, email=email, phone=phone, desc=desc, date = datetime.today())
-        contact.save()
+        ptype=request.POST['ptype']
+        psummary=request.POST['psummary']
+        pdescription=request.POST['pdescription']
+        kanalysis=request.POST['kanalysis']
+        kinsights=request.POST['kinsights']
+        owner=request.POST['owner']
+    
+    
+        conn = MongoClient()
+        db=conn.users
+        collection=db.knowledge
+        rec1={"ptype":ptype,
+          "psummary":psummary,
+          "pdescription":pdescription,
+          "kanalysis":kanalysis,
+          "kinsights":kinsights,
+          "owner":owner
+        }
+        collection.insert_one(rec1)
         messages.success(request, 'Your message has been sent!')
     return render(request, 'contact.html')
 
